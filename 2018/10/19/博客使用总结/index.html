@@ -136,17 +136,17 @@
 
 
 
-<meta name="description" content="如何在另一台ubuntu电脑上直接进行写作1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。2、Hexo拉取。        git clone https://git.coding.net//Hexo-my.git #如何在最初的电脑上进行写作# #如何在windows上进行写作#">
+<meta name="description" content="如何在另一台ubuntu电脑上直接进行写作1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。2、Hexo拉取。 git clone https://git.coding.net/&amp;lt;yourname&amp;gt;/Hexo-my.git 这样你就拥有了所有的Hexo源文件（就是你coding.net上的所有源文件）。3、Hexo的编写和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客使用总结">
 <meta property="og:url" content="http://yoursite.com/2018/10/19/博客使用总结/index.html">
 <meta property="og:site_name" content="CherrySunshine">
-<meta property="og:description" content="如何在另一台ubuntu电脑上直接进行写作1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。2、Hexo拉取。        git clone https://git.coding.net//Hexo-my.git #如何在最初的电脑上进行写作# #如何在windows上进行写作#">
+<meta property="og:description" content="如何在另一台ubuntu电脑上直接进行写作1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。2、Hexo拉取。 git clone https://git.coding.net/&amp;lt;yourname&amp;gt;/Hexo-my.git 这样你就拥有了所有的Hexo源文件（就是你coding.net上的所有源文件）。3、Hexo的编写和">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T07:40:42.949Z">
+<meta property="og:updated_time" content="2018-10-19T08:05:38.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客使用总结">
-<meta name="twitter:description" content="如何在另一台ubuntu电脑上直接进行写作1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。2、Hexo拉取。        git clone https://git.coding.net//Hexo-my.git #如何在最初的电脑上进行写作# #如何在windows上进行写作#">
+<meta name="twitter:description" content="如何在另一台ubuntu电脑上直接进行写作1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。2、Hexo拉取。 git clone https://git.coding.net/&amp;lt;yourname&amp;gt;/Hexo-my.git 这样你就拥有了所有的Hexo源文件（就是你coding.net上的所有源文件）。3、Hexo的编写和">
 
 
 
@@ -563,9 +563,21 @@
       
 
       
-        <h1 id="如何在另一台ubuntu电脑上直接进行写作"><a href="#如何在另一台ubuntu电脑上直接进行写作" class="headerlink" title="如何在另一台ubuntu电脑上直接进行写作"></a>如何在另一台ubuntu电脑上直接进行写作</h1><p>1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。<br>2、Hexo拉取。<br>        git clone <a href="https://git.coding.net/" target="_blank" rel="external">https://git.coding.net/</a><yourname>/Hexo-my.git</yourname></p>
-<p>#如何在最初的电脑上进行写作#</p>
-<p>#如何在windows上进行写作#</p>
+        <h1 id="如何在另一台ubuntu电脑上直接进行写作"><a href="#如何在另一台ubuntu电脑上直接进行写作" class="headerlink" title="如何在另一台ubuntu电脑上直接进行写作"></a>如何在另一台ubuntu电脑上直接进行写作</h1><p>1、首先要在另一台电脑上完成node/npm/hexo/git等环境的搭建与配置。具体如何配置参考网上的各种博客。<br>2、Hexo拉取。</p>
+<pre><code>git clone https://git.coding.net/&lt;yourname&gt;/Hexo-my.git
+</code></pre><p>这样你就拥有了所有的Hexo源文件（就是你coding.net上的所有源文件）。<br>3、Hexo的编写和发布。</p>
+<pre><code>npm install
+</code></pre><p>4、接下来就可以进行正常的编写和发布就好了。<br>5、该命令是将本地的文件直接发布到github上也即自己的博客上。</p>
+<pre><code>hexo g -d
+</code></pre><p>6、但是如果想同步到coding.net的话就需要下面的命令。</p>
+<pre><code>1、git status
+2、git add 更改的文件
+3、git commit -m &quot;提交内容&quot;
+4、git push
+</code></pre><p>完成这几个命令之后，coding.net上就有了最新的代码，同时github上也有了最新的代码。<br>7、那么如何在最初的电脑上进行写作呢？或者如何更新Hexo仓库呢？<br>下次进行Hexo仓库拉取的时候执行：</p>
+<pre><code>1、git fetch --all #将git上的所有文件拉取到本地
+2、git reset --hard origin/master #强制将本地内容指向刚刚同步git云端内容 
+</code></pre><h1 id="如何在windows上进行写作"><a href="#如何在windows上进行写作" class="headerlink" title="如何在windows上进行写作"></a>如何在windows上进行写作</h1><p>暂时还没有研究</p>
 
       
     </div>
@@ -785,7 +797,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何在另一台ubuntu电脑上直接进行写作"><span class="nav-number">1.</span> <span class="nav-text">如何在另一台ubuntu电脑上直接进行写作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何在另一台ubuntu电脑上直接进行写作"><span class="nav-number">1.</span> <span class="nav-text">如何在另一台ubuntu电脑上直接进行写作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何在windows上进行写作"><span class="nav-number">2.</span> <span class="nav-text">如何在windows上进行写作</span></a></li></ol></div>
             
 
           </div>
