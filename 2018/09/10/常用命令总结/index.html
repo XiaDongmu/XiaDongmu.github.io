@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italic|Comic Sans MS:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写这篇博客的目的时记录自己常用的命令，不会的时候可以速查，不用每次都百度这么麻烦！ Linux常用命令Linux文件系统bin  (binaries)存放二进制可执行文件 sbin  (super user binaries)存放二进制可执行文件，只有root才能访问 etc (etcetera)存放系统配置文件 usr  (unix shared resources)用于存放共享的系统资源 ho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令总结">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/常用命令总结/index.html">
+<meta property="og:site_name" content="CherrySunshine">
+<meta property="og:description" content="写这篇博客的目的时记录自己常用的命令，不会的时候可以速查，不用每次都百度这么麻烦！ Linux常用命令Linux文件系统bin  (binaries)存放二进制可执行文件 sbin  (super user binaries)存放二进制可执行文件，只有root才能访问 etc (etcetera)存放系统配置文件 usr  (unix shared resources)用于存放共享的系统资源 ho">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/vkq1Xmw.png">
+<meta property="og:image" content="https://i.imgur.com/7zj4867.png">
+<meta property="og:image" content="https://i.imgur.com/rft0QmD.png">
+<meta property="og:image" content="https://i.imgur.com/UEyvRa7.png">
+<meta property="og:image" content="https://i.imgur.com/wF6ghRm.png">
+<meta property="og:image" content="https://i.imgur.com/bwxJtJP.png">
+<meta property="og:image" content="https://i.imgur.com/gN6Ofi2.png">
+<meta property="og:image" content="https://i.imgur.com/CiLYieG.png">
+<meta property="og:updated_time" content="2018-10-19T06:46:49.240Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用命令总结">
+<meta name="twitter:description" content="写这篇博客的目的时记录自己常用的命令，不会的时候可以速查，不用每次都百度这么麻烦！ Linux常用命令Linux文件系统bin  (binaries)存放二进制可执行文件 sbin  (super user binaries)存放二进制可执行文件，只有root才能访问 etc (etcetera)存放系统配置文件 usr  (unix shared resources)用于存放共享的系统资源 ho">
+<meta name="twitter:image" content="https://i.imgur.com/vkq1Xmw.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/常用命令总结/"/>
+
+
+
+
+
+  <title>常用命令总结 | CherrySunshine</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CherrySunshine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+<li> <a title="来来来，大家一起嗨一下" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/常用命令总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Dongmu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CherrySunshine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常用命令总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T17:26:54+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/10/常用命令总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/09/10/常用命令总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>写这篇博客的目的时记录自己常用的命令，不会的时候可以速查，不用每次都百度这么麻烦！</p>
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h2><pre><code>bin  (binaries)存放二进制可执行文件
+sbin  (super user binaries)存放二进制可执行文件，只有root才能访问
+etc (etcetera)存放系统配置文件
+usr  (unix shared resources)用于存放共享的系统资源
+home 存放用户文件的根目录
+root  超级用户目录
+dev (devices)用于存放设备文件
+lib  (library)存放跟文件系统中的程序运行所需要的共享库及内核模块
+mnt  (mount)系统管理员安装临时文件系统的安装点
+boot 存放用于系统引导时使用的各种文件
+tmp  (temporary)用于存放各种临时文件
+var  (variable)用于存放运行时需要改变数据的文件
+</code></pre><h2 id="查看内存free"><a href="#查看内存free" class="headerlink" title="查看内存free"></a>查看内存free</h2><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><pre><code>ps -aux |grep firefox(grep的作用是查询字符串)
+jps：jps是查询java虚拟机进程
+</code></pre><h2 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h2><pre><code>kill -9 PID
+</code></pre><h2 id="追加文件的内容"><a href="#追加文件的内容" class="headerlink" title="追加文件的内容"></a>追加文件的内容</h2><pre><code>cat id_rsa.pub &gt;&gt; authorized_keys
+（意思是追加id_rsa.pub中的内容到authorized_keys文件的最后）
+</code></pre><h2 id="rz、sz"><a href="#rz、sz" class="headerlink" title="rz、sz"></a>rz、sz</h2><h2 id="init-6和reboot"><a href="#init-6和reboot" class="headerlink" title="init 6和reboot"></a>init 6和reboot</h2><pre><code>重启，init 6应该时不能重启网络配置的，尽量多用init 6
+reboot要少使用
+</code></pre><h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><pre><code>查询cpu使用率
+</code></pre><h2 id="查看文件的大小"><a href="#查看文件的大小" class="headerlink" title="查看文件的大小"></a>查看文件的大小</h2><pre><code>du -sh file(查询file的大小)
+du -sh *（列出当前目录中所有文件的大小）
+du -sh    (列出当前目录总大小)
+</code></pre><h2 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h2><pre><code>编辑网卡详细配置（IP、DNS等）
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+
+查看有几块网卡的详细信息，比如eth0,eth1
+rm -rf /etc/udev/rules.d/70-persistent-net.rules
+
+重启网络配置
+service network restart
+</code></pre><h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><pre><code>1.永久有效：
+    开启： chkconfig iptables on 
+    关闭： chkconfig iptables off
+2.即刻生效
+    开启： service iptables start 
+    关闭： service iptables stop 
+3.开启部分端口
+    vim /etc/sysconfig/iptables
+
+添加想要开启的相关端口
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 6379 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8081 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8082 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+
+4.最后:service iptables restart 
+</code></pre><h1 id="Shell常用命令"><a href="#Shell常用命令" class="headerlink" title="Shell常用命令"></a>Shell常用命令</h1><h1 id="Vim常用命令"><a href="#Vim常用命令" class="headerlink" title="Vim常用命令"></a>Vim常用命令</h1><h2 id="编辑命令"><a href="#编辑命令" class="headerlink" title="编辑命令"></a>编辑命令</h2><pre><code>i：光标前编辑，I：光标置于当前行的第一个非空白字符处并进入编辑模式
+a:光标后编辑，A:在行尾编辑
+o:在光标所有行下行开启新行并编辑
+O：在光标所有行上行开启新行并编辑
+
+yy复制该行，yyp复制该行，并粘贴到下一行
+</code></pre><h2 id="光标的移动"><a href="#光标的移动" class="headerlink" title="光标的移动"></a>光标的移动</h2><pre><code>h        向左
+
+j        向下
+
+k        向上
+
+l        向右（hjkl记忆方法：左下右上）
+
+w        移动到下一个字的开始处
+
+W        也是移动到下一个字，不过判断标准是空白（意思是遇见on-line这种小写的w会移动两次，但        是大写的W只会移动一次）
+
+b        移动到上一个字的开始处
+
+B        移动到上一个字的开始处，区别同上
+
+e        移动到当前字的末端
+
+E        移动到当前字的末端，区别同上
+
+0移动到行首，$移动到行尾，^移动到行首的非空白字符
+</code></pre><h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><pre><code>dd       删除当前行
+dw       删除一个字(从字的光标位置删除到字尾,包括字后空白)
+
+daw      删除一个字(从字首删除到字尾,包括字后空白)
+
+diw      删除一个字(从字首删除到字尾,不包括字后空白)
+
+d0       删至行首
+
+D        删除到行尾
+</code></pre><h2 id="与数字组合"><a href="#与数字组合" class="headerlink" title="与数字组合"></a>与数字组合</h2><pre><code>50l        向后移50个单元
+
+d5w        删除后面5个字
+
+dL         删除到屏幕底端
+
+100gg      跳到文件第100行
+</code></pre><h2 id="其余指令"><a href="#其余指令" class="headerlink" title="其余指令"></a>其余指令</h2><pre><code>.        重复上一个改变，包括插入，删除，或替换操作
+
+u        撤销
+
+J        把下一行连接到当前行, 实际操作为删除当前行的换行符
+
+&gt;&gt;       向右缩进, 3&gt;&gt;
+
+&lt;&lt;       向左缩进 
+
+CTRL-f   向前翻页(即光标向下移动)
+
+CTRL-b   向后翻页(即光标向上移动)
+
+CTRL-u   向后滚动半屏
+
+CTRL-d   向前滚动半屏
+
+zz       使当前位置成为屏幕的中间
+ZZ         快速保存并退出vim
+ZQ         快速不保存退出vim
+</code></pre><h2 id="文本选择"><a href="#文本选择" class="headerlink" title="文本选择"></a>文本选择</h2><pre><code>v        按行选中，以单元为单位，可以组合使用：v%，vL，v$
+
+V        按行选中，以行为单位
+
+CTRL-v   按列选中
+</code></pre><h2 id="选中后可进行操作"><a href="#选中后可进行操作" class="headerlink" title="选中后可进行操作"></a>选中后可进行操作</h2><pre><code>u          转成小写  
+
+U          转成大写  
+
+y         拷贝 
+
+&gt;       向右缩进   
+
+&lt;       向左缩进
+</code></pre><h2 id="复制-yank-与粘贴-paste"><a href="#复制-yank-与粘贴-paste" class="headerlink" title="复制(yank)与粘贴(paste)"></a>复制(yank)与粘贴(paste)</h2><pre><code>y        拷贝指令，拷贝选定内容到缓冲区
+
+Y        拷贝指令，拷贝当前行的内容到缓冲区
+
+p        粘贴指令，粘贴由x, X, d, D, y引起的缓冲区
+
+P        粘贴指令，不同的是p把缓冲区内容放在当前光标之后
+
+yy       拷贝当前行
+
+y4j      拷贝当前行和后 4 行
+
+ddp      对换当前行和下一行
+</code></pre><h2 id="字符替换"><a href="#字符替换" class="headerlink" title="字符替换"></a>字符替换</h2><pre><code>rx        把当前字符替换为x, x为任意字符
+
+R         替换n个字符, 直到按Esc或^[为止
+</code></pre><h2 id="字串查找"><a href="#字串查找" class="headerlink" title="字串查找"></a>字串查找</h2><pre><code>/        向后查找
+
+?        向前查找
+
+*        向后查找光标所在字
+
+#        向前查找光标所在字
+
+n        下一个
+
+N        上一个
+</code></pre><h2 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h2><pre><code>~        大小写互换
+
+g~~      把该行的大小写互换
+
+guu      把当前行换成小写    
+
+gUU      把当前行换成大写  
+
+gUw      把当前光标位置一直到当前字结束换成大写
+</code></pre><h2 id="对码农比较有用的东西"><a href="#对码农比较有用的东西" class="headerlink" title="对码农比较有用的东西"></a>对码农比较有用的东西</h2><pre><code>%        在()，[]，{}之间移动
+==         格式化
+[[       移动到一个代码块的开头
+][       移到到一个代码块的结尾
+</code></pre><h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><h2 id="Git-使用过程中用的命令"><a href="#Git-使用过程中用的命令" class="headerlink" title="Git 使用过程中用的命令"></a>Git 使用过程中用的命令</h2><pre><code>$ git add readme.txt
+$ git commit -m &quot;wrote a readme file&quot;
+$ git status        
+$ git diff readme.txt
+
+git log查看提交历史，以确定回退到哪个版本
+$ git log
+$ git log --pretty=oneline
+
+重返未来,git reflog查看将来的版本号，原因是将来的版本号git log看不见
+$ git reflog
+$ git reset --hard HEAD^（head是当前版本，回退到上一个版本）
+$ git reset --hard 3628164
+
+工作区与暂存区：
+
+    前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的： 
+第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区； 
+第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。 
+
+因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
+
+Git丢弃修改：
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。 
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。 
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+
+Git删除的对错：
+在文件管理器中rm test.txt之后出现两种情况：
+（1）删的是对的，那么$ git rm test.txt，彻底删除
+（2）删除的是错的，那么$ git checkout -- test.txt git checkout，其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+
+远程仓库：
+
+（1）要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；（主要使用场景是新建了一个远程库为空，本地库有内容，想把本地库与远程库关联起来）
+（2）关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（只有第一次要加 -u） 
+（3）此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+Git clone命令
+ $ git clone git@github.com:michaelliao/gitskills.git
+
+分支：
+    Git鼓励大量使用分支： 
+        查看分支：git branch 
+        创建分支：git branch &lt;name&gt; 
+        切换分支：git checkout &lt;name&gt; 
+        创建+切换分支：git checkout -b &lt;name&gt; 
+        合并某分支到当前分支：git merge &lt;name&gt; 
+        删除分支：git branch -d &lt;name&gt;
+
+    git分支合并图命令：
+        git log --graph --pretty=oneline --abbrev-commit
+    分支合并命令：
+        git merge --no-ff -m &quot;merge with no-ff&quot; dev
+
+分支如何推送：
+    （1）master分支是主分支，因此要时刻与远程同步；
+    （2）dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+    （3）bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+     （4）feature（新的功能）分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
+
+多人协作：
+    （1）查看远程库信息，使用git remote -v；
+     （2）本地新建的分支如果不推送到远程，对其他人就是不可见的；
+    （3）从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+     （4）在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+     （5）建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name； 
+    （6）从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+</code></pre><p><img src="https://i.imgur.com/vkq1Xmw.png" alt=""></p>
+<h2 id="Git-Bash安装及基本配置"><a href="#Git-Bash安装及基本配置" class="headerlink" title="Git Bash安装及基本配置"></a>Git Bash安装及基本配置</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><img src="https://i.imgur.com/7zj4867.png" alt=""><br><img src="https://i.imgur.com/rft0QmD.png" alt=""><br><img src="https://i.imgur.com/UEyvRa7.png" alt=""></p>
+<h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><p>(1)打开Git Bash查看电脑上是否已经存在SSH密钥：</p>
+<pre><code>输入 cd ~/.ssh
+</code></pre><p>(2)创建新的ssh key:</p>
+<pre><code>输入 ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot; 
+
+执行这条命令会如上图提示文件保存路径，然后直接按三次Enter，然后会在 .ssh 目录生产两个文件：
+id_rsa和id_rsa.pub
+</code></pre><p>(3)用记事本打开.ssh目录下的id_rsa.pub文件，复制里面的内容；</p>
+<p>(4)    复制ssh key到github：打开github网站，点击右上角扳手图标，然后点击左边菜单的 ssh key， 然后右边页面的add ssh key，将复制的内容粘贴到github的key中，title可以不填，直接保存即可。</p>
+<pre><code>（这一步是到github的，如果自己有搭建git服务器，则可以直接去服务器上（CentOS）将id_rsa.pub内的
+公共秘钥导入到到/home/git/.ssh/authorized_keys文件里，一行一个。）
+</code></pre><p>5、测试 ssh 链接 github：</p>
+<pre><code>输入 ssh -T git@github.com
+</code></pre><p>出现Successfully就OK；</p>
+<p>6、设置自己的git信息：</p>
+<pre><code>输入
+
+git config --global user.name &quot;Firstname Lastname&quot; （此处name可修改也不是
+用于登录github的登录名）
+
+git config --global user.email &quot;your_email@youremail.com&quot;
+
+设置自己的git信息即完成安装和设置，可以输入git config --list查看自己的git信
+息。
+</code></pre><p>7、更改 git bash 默认路径</p>
+<p>（1）安装好Git工具后，找到桌面或者windows的开始菜单下找到Git Bash 快捷方式<br><img src="https://i.imgur.com/wF6ghRm.png" alt=""></p>
+<p>（2）选中Git Bash图标，右键，选中“属性”，打开如图：<br><img src="https://i.imgur.com/bwxJtJP.png" alt=""></p>
+<p>（3）去掉–cd-to-home，修改“起始位置”为自定义的git 本地仓库的路径，如：F:\Workspace\KYGitLabel<br><img src="https://i.imgur.com/gN6Ofi2.png" alt=""></p>
+<p>（4）再次打开Git Bash时已经修改了默认路径：<br><img src="https://i.imgur.com/CiLYieG.png" alt=""></p>
+<p>（5）Git CMD 也如上修改，将快捷方式中路径修改为自定义路径即可，这样每次打开Git Bash 和Git CMD就自己进入本地的Git Repository里面了。</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/03/leetcode82--删除有序链表中的重复元素之二/" rel="next" title="82：删除有序链表中的重复元素之二">
+                <i class="fa fa-chevron-left"></i> 82：删除有序链表中的重复元素之二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/10/Java NIO/" rel="prev" title="Java NIO核心组件">
+                Java NIO核心组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Xia Dongmu" />
+            
+              <p class="site-author-name" itemprop="name">Xia Dongmu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="http://redmud.xyz/" target="_blank" title="友情链接">
+                    
+                      <i class="fa fa-fw fa-globe"></i>友情链接</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux常用命令"><span class="nav-number">1.</span> <span class="nav-text">Linux常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux文件系统"><span class="nav-number">1.1.</span> <span class="nav-text">Linux文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看内存free"><span class="nav-number">1.2.</span> <span class="nav-text">查看内存free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看进程"><span class="nav-number">1.3.</span> <span class="nav-text">查看进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀死进程"><span class="nav-number">1.4.</span> <span class="nav-text">杀死进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#追加文件的内容"><span class="nav-number">1.5.</span> <span class="nav-text">追加文件的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rz、sz"><span class="nav-number">1.6.</span> <span class="nav-text">rz、sz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init-6和reboot"><span class="nav-number">1.7.</span> <span class="nav-text">init 6和reboot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top"><span class="nav-number">1.8.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件的大小"><span class="nav-number">1.9.</span> <span class="nav-text">查看文件的大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络配置"><span class="nav-number">1.10.</span> <span class="nav-text">网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭防火墙"><span class="nav-number">1.11.</span> <span class="nav-text">关闭防火墙</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell常用命令"><span class="nav-number">2.</span> <span class="nav-text">Shell常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim常用命令"><span class="nav-number">3.</span> <span class="nav-text">Vim常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑命令"><span class="nav-number">3.1.</span> <span class="nav-text">编辑命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光标的移动"><span class="nav-number">3.2.</span> <span class="nav-text">光标的移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">3.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与数字组合"><span class="nav-number">3.4.</span> <span class="nav-text">与数字组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其余指令"><span class="nav-number">3.5.</span> <span class="nav-text">其余指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本选择"><span class="nav-number">3.6.</span> <span class="nav-text">文本选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选中后可进行操作"><span class="nav-number">3.7.</span> <span class="nav-text">选中后可进行操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制-yank-与粘贴-paste"><span class="nav-number">3.8.</span> <span class="nav-text">复制(yank)与粘贴(paste)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符替换"><span class="nav-number">3.9.</span> <span class="nav-text">字符替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字串查找"><span class="nav-number">3.10.</span> <span class="nav-text">字串查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大小写转换"><span class="nav-number">3.11.</span> <span class="nav-text">大小写转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对码农比较有用的东西"><span class="nav-number">3.12.</span> <span class="nav-text">对码农比较有用的东西</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git常用命令"><span class="nav-number">4.</span> <span class="nav-text">Git常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-使用过程中用的命令"><span class="nav-number">4.1.</span> <span class="nav-text">Git 使用过程中用的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Bash安装及基本配置"><span class="nav-number">4.2.</span> <span class="nav-text">Git Bash安装及基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">4.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本配置"><span class="nav-number">4.2.2.</span> <span class="nav-text">基本配置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xia Dongmu</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 99008, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 99008, xid: "2018/09/10/常用命令总结/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/99008/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

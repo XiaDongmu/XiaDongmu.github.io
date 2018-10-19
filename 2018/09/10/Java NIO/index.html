@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italic|Comic Sans MS:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景知识（同步、异步、阻塞、非阻塞） 同步：API调用返回时调用者就知道操作的结果如何了（实际读取、写入了多少个字节） 异步：相对于同步，API调用返回时调用者不知道返回的结果，后面才会通知回调通知结果 阻塞：当无数据可读，或者不能写入所有数据时，挂起当前线程等待 非阻塞：读取时，可以读多少数据就读多少然后返回，写入时，可以写入多少数据就写入多少数据然后返回。 对于I/O操作，根据Oracle官网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java NIO核心组件">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/Java NIO/index.html">
+<meta property="og:site_name" content="CherrySunshine">
+<meta property="og:description" content="背景知识（同步、异步、阻塞、非阻塞） 同步：API调用返回时调用者就知道操作的结果如何了（实际读取、写入了多少个字节） 异步：相对于同步，API调用返回时调用者不知道返回的结果，后面才会通知回调通知结果 阻塞：当无数据可读，或者不能写入所有数据时，挂起当前线程等待 非阻塞：读取时，可以读多少数据就读多少然后返回，写入时，可以写入多少数据就写入多少数据然后返回。 对于I/O操作，根据Oracle官网">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/uyd2YxL.png">
+<meta property="og:image" content="https://i.imgur.com/3lZbofp.png">
+<meta property="og:image" content="https://i.imgur.com/E58bTLU.png">
+<meta property="og:image" content="https://i.imgur.com/LY7TxyT.png">
+<meta property="og:updated_time" content="2018-10-19T06:46:49.240Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java NIO核心组件">
+<meta name="twitter:description" content="背景知识（同步、异步、阻塞、非阻塞） 同步：API调用返回时调用者就知道操作的结果如何了（实际读取、写入了多少个字节） 异步：相对于同步，API调用返回时调用者不知道返回的结果，后面才会通知回调通知结果 阻塞：当无数据可读，或者不能写入所有数据时，挂起当前线程等待 非阻塞：读取时，可以读多少数据就读多少然后返回，写入时，可以写入多少数据就写入多少数据然后返回。 对于I/O操作，根据Oracle官网">
+<meta name="twitter:image" content="https://i.imgur.com/uyd2YxL.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/Java NIO/"/>
+
+
+
+
+
+  <title>Java NIO核心组件 | CherrySunshine</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CherrySunshine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+<li> <a title="来来来，大家一起嗨一下" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Java NIO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Dongmu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CherrySunshine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java NIO核心组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T19:26:54+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/10/Java NIO/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/09/10/Java NIO/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="背景知识（同步、异步、阻塞、非阻塞）"><a href="#背景知识（同步、异步、阻塞、非阻塞）" class="headerlink" title="背景知识（同步、异步、阻塞、非阻塞）"></a>背景知识（同步、异步、阻塞、非阻塞）</h1><ol>
+<li>同步：API调用返回时调用者就知道操作的结果如何了（实际读取、写入了多少个字节）</li>
+<li>异步：相对于同步，API调用返回时调用者不知道返回的结果，后面才会通知回调通知结果</li>
+<li>阻塞：当无数据可读，或者不能写入所有数据时，挂起当前线程等待</li>
+<li>非阻塞：读取时，可以读多少数据就读多少然后返回，写入时，可以写入多少数据就写入多少数据然后返回。</li>
+<li>对于I/O操作，根据Oracle官网的文档，同步异步划分的标准是“调用者是否需要等待I/O操作完成”，这个“等待I/O操作完成”并不是说一定要等到读取到数据或者说写入所有的数据，而是指真正进行I/O操作时，调用者是否需要等待，比如数据在TCP/IP协议栈缓冲区和JVM缓冲区之间传输的这段时间，调用者是否要等待。所以我们常用的read()和write()方法都是同步I/O，同步I/O又分为阻塞和非阻塞两种模式，如果是非阻塞模式，检测到无数据可读时直接就返回了，并没有真正的执行I/O操作。总结就是，    Java中实际上只有同步阻塞I/O、同步非阻塞I/O和异步I/O三种机制，JDK1.7才开始引用异步I/O，那称之为NIO.2。</li>
+<li>NIO全称Non-Blocked IO，也是New IO</li>
+</ol>
+<h1 id="传统I-O"><a href="#传统I-O" class="headerlink" title="传统I/O"></a>传统I/O</h1><p>传统 I/O 是阻塞式I/O，主要问题是系统资源的浪费。比如我们为了读取一个TCP连接的数据，调用 InputStream 的 read() 方法，这会使当前线程被挂起，直到有数据到达才被唤醒，那该线程在数据到达这段时间内，占用着内存资源（存储线程栈）却无所作为，也就是俗话说的占着茅坑不拉屎，为了读取其他连接的数据，我们不得不启动另外的线程。在并发连接数量不多的时候，这可能没什么问题，然而当连接数量达到一定规模，内存资源会被大量线程消耗殆尽。另一方面，线程切换需要更改处理器的状态，比如程序计数器、寄存器的值，因此非常频繁的在大量线程之间切换，同样是一种资源浪费。</p>
+<p>随着技术的发展，现代操作系统提供了新的I/O机制，可以避免这种资源浪费。基于此，诞生了Java NIO，NIO的代表性特征就是非阻塞I/O。紧接着我们发现，简单的使用非阻塞I/O并不能解决问题，因为在非阻塞模式下，read()方法在没有读取到数据时就会立即返回，不知道数据何时到达的我们，只能不停的调用read()方法进行重试，这显然太浪费CPU资源了，从下文可以知道，Selector组件正是为解决此问题而生。</p>
+<h1 id="Java-NIO核心组件一：Channel概念"><a href="#Java-NIO核心组件一：Channel概念" class="headerlink" title="Java NIO核心组件一：Channel概念"></a>Java NIO核心组件一：Channel概念</h1><p>Java NIO中的所有I/O操作都基于Channel对象，就像流操作都要基于Stream对象一样，因此很有必要先了解Channel是什么。以下内容摘自JDK 1.8的文档</p>
+<pre><code>A channel represents an open connection to an entity such as a hardware
+device, a file, a network socket, or a program component that is 
+capable of performing one or more distinct I/O operations, for example 
+reading or writing.
+</code></pre><p>从上述内容可知，一个Channel（通道）代表和某一实体的连接，这个实体可以是文件、网络套接字等。也就是说，通道是Java NIO提供的一座桥梁，用于我们的程序和操作系统底层I/O服务进行交互。<br>通道是一种很基本很抽象的描述，和不同的I/O服务交互，执行不同的I/O操作，实现不一样，因此具体的有FileChannel、SocketChannel等。</p>
+<p>通道使用起来跟Stream比较像，可以读取数据到Buffer中，也可以把Buffer中的数据写入通道。</p>
+<p><img src="https://i.imgur.com/uyd2YxL.png" alt=""></p>
+<p>当然，也有区别，主要体现在如下两点：</p>
+<ul>
+<li>一个通道，既可以读又可以写，而一个Stream是单向的（所以分 InputStream 和 OutputStream）</li>
+</ul>
+<ul>
+<li>通道有非阻塞I/O模式</li>
+</ul>
+<p>实现<br>Java NIO中最常用的通道实现是如下几个，可以看出跟传统的 I/O 操作类是一一对应的。</p>
+<ul>
+<li>FileChannel：读写文件</li>
+</ul>
+<ul>
+<li>DatagramChannel: UDP协议网络通信</li>
+</ul>
+<ul>
+<li>SocketChannel：TCP协议网络通信</li>
+</ul>
+<ul>
+<li>ServerSocketChannel：监听TCP连接</li>
+</ul>
+<h1 id="Java-NIO核心组件二：Buffer概念"><a href="#Java-NIO核心组件二：Buffer概念" class="headerlink" title="Java NIO核心组件二：Buffer概念"></a>Java NIO核心组件二：Buffer概念</h1><p>NIO中所使用的缓冲区不是一个简单的byte数组，而是封装过的Buffer类，通过它提供的API，我们可以灵活的操纵数据，下面细细道来。</p>
+<p>与Java基本类型相对应，NIO提供了多种 Buffer 类型，如ByteBuffer、CharBuffer、IntBuffer等，区别就是读写缓冲区时的单位长度不一样（以对应类型的变量为单位进行读写）。</p>
+<p>Buffer中有3个很重要的变量，它们是理解Buffer工作机制的关键，分别是</p>
+<ul>
+<li>capacity （总容量）</li>
+</ul>
+<ul>
+<li>position （指针当前位置）</li>
+</ul>
+<ul>
+<li>limit （读/写边界位置）</li>
+</ul>
+<p>Buffer的工作方式跟C语言里的字符数组非常的像，类比一下，capacity就是数组的总长度，position就是我们读/写字符的下标变量，limit就是结束符的位置。Buffer初始时3个变量的情况如下图<br><img src="https://i.imgur.com/3lZbofp.png" alt=""></p>
+<p>在对Buffer进行读/写的过程中，position会往后移动，而 limit 就是 position 移动的边界。由此不难想象，在对Buffer进行写入操作时，limit应当设置为capacity的大小，而对Buffer进行读取操作时，limit应当设置为数据的实际结束位置。（注意：将Buffer数据 写入通道是Buffer 读取操作，从通道 读取数据到Buffer是Buffer 写入操作）</p>
+<p>在对Buffer进行读/写操作前，我们可以调用Buffer类提供的一些辅助方法来正确设置 position 和 limit 的值，主要有如下几个</p>
+<ul>
+<li>flip(): 设置 limit 为 position 的值，然后 position 置为0。对Buffer进行读取操作前调用。</li>
+</ul>
+<ul>
+<li>rewind(): 仅仅将 position 置0。一般是在重新读取Buffer数据前调用，比如要读取同一个Buffer的数据写入多个通道时会用到。</li>
+</ul>
+<ul>
+<li>clear(): 回到初始状态，即 limit 等于 capacity，position 置0。重新对Buffer进行写入操作前调用。</li>
+</ul>
+<ul>
+<li>compact(): 将未读取完的数据（position 与 limit 之间的数据）移动到缓冲区开头，并将 position 设置为这段数据末尾的下一个位置。其实就等价于重新向缓冲区中写入了这么一段数据。</li>
+</ul>
+<p>Java NIO FileChannel是连接文件的通道。使用FileChannel，您可以从文件中读取数据和将数据写入文件。Java NIO FileChannel类是NIO用于替代使用标准Java IO API读取文件的方法。</p>
+<p>FileChannel无法设置为非阻塞模式。它总是以阻止模式运行。</p>
+<p>使用之前，FileChannel必须被打开，但是你无法直接打开FileChannel。需要通过InputStream，OutputStream或RandomAccessFile获取FileChannel。</p>
+<p>然后，看一个实例，使用 FileChannel 读写文本文件，通过这个例子验证通道可读可写的特性以及Buffer的基本用法（注意 FileChannel 不能设置为非阻塞模式）。<br>        import java.io.IOException;<br>        import java.io.RandomAccessFile;<br>        import java.nio.ByteBuffer;<br>        import java.nio.CharBuffer;<br>        import java.nio.channels.FileChannel;<br>        import java.nio.charset.CharsetDecoder;<br>        import java.nio.charset.StandardCharsets;</p>
+<pre><code>public class Test1 {
+
+    public static void main(String[] args) throws IOException {
+        FileChannel channel = new RandomAccessFile( &quot;C://temp/test.txt&quot;, &quot;rw&quot;).getChannel();
+        channel.position(channel.size()); // 移动文件指针到末尾（追加写入）
+
+        //通过ByteBuffer.allocate(20)创建了一个20个byte的数组缓冲区
+        ByteBuffer byteBuffer = ByteBuffer.allocate(20);
+
+
+        // 数据写入Buffer
+
+        byteBuffer.put(&quot;你好，世界！n&quot;.getBytes(StandardCharsets.UTF_8));
+
+        // Buffer -&gt; Channel
+
+        byteBuffer.flip();
+
+        while(byteBuffer.hasRemaining()) {
+
+        channel.write(byteBuffer);
+        }
+
+        channel.position(0); // 移动文件指针到开头（从头读取）
+
+        CharBuffer charBuffer = CharBuffer.allocate(10);
+
+        CharsetDecoder decoder = StandardCharsets.UTF_8.newDecoder();
+
+        // 读出所有数据
+
+        byteBuffer.clear();
+
+        while(channel.read(byteBuffer) != -1|| byteBuffer.position() &gt; 0) {
+
+            byteBuffer.flip();
+
+            // 使用UTF-8解码器解码
+
+            charBuffer.clear();
+
+            decoder.decode(byteBuffer, charBuffer, false);
+
+            System.out.print(charBuffer.flip().toString());
+
+            byteBuffer.compact(); // 数据可能有剩余
+        }
+
+        channel.close();
+
+    }
+
+}
+</code></pre><p>这个例子中使用了两个Buffer，其中 byteBuffer 作为通道读写的数据缓冲区，charBuffer 用于存储解码后的字符。clear() 和 flip() 的用法正如上文所述，需要注意的是最后那个 compact() 方法，即使 charBuffer 的大小完全足以容纳 byteBuffer 解码后的数据，这个 compact() 也必不可少，这是因为常用中文字符的UTF-8编码占3个字节，因此有很大概率出现在中间截断的情况，请看下图：</p>
+<p><img src="https://i.imgur.com/E58bTLU.png" alt=""></p>
+<p>当 Decoder 读取到缓冲区末尾的 0xe4 时，无法将其映射到一个 Unicode，decode()方法第三个参数 false 的作用就是让 Decoder 把无法映射的字节及其后面的数据都视作附加数据，因此 decode() 方法会在此处停止，并且 position 会回退到 0xe4 的位置。如此一来， 缓冲区中就遗留了“中”字编码的第一个字节，必须将其 compact 到前面，以正确的和后序数据拼接起来。</p>
+<p>BTW，例子中的 CharsetDecoder 也是 Java NIO 的一个新特性，所以大家应该发现了一点哈，NIO的操作是面向缓冲区的（传统I/O是面向流的）。</p>
+<p>至此，我们了解了 Channel 与 Buffer 的基本用法。接下来要说的是让一个线程管理多个Channel的重要组件。</p>
+<h1 id="Java-NIO核心组件三：Selector概念"><a href="#Java-NIO核心组件三：Selector概念" class="headerlink" title="Java NIO核心组件三：Selector概念"></a>Java NIO核心组件三：Selector概念</h1><p>Selector（选择器）是一个特殊的组件，用于采集各个通道的状态（或者说事件）。我们先将通道注册到选择器，并设置好关心的事件，然后就可以通过调用select()方法，静静地等待事件发生。</p>
+<p>通道有如下4个事件可供我们监听：</p>
+<ul>
+<li>Accept：有可以接受的连接</li>
+</ul>
+<ul>
+<li>Connect：连接成功</li>
+</ul>
+<ul>
+<li>Read：有数据可读</li>
+</ul>
+<ul>
+<li>Write：可以写入数据了</li>
+</ul>
+<h2 id="为什么要用Selector"><a href="#为什么要用Selector" class="headerlink" title="为什么要用Selector"></a>为什么要用Selector</h2><p>前文说了，如果用阻塞I/O，需要多线程（浪费内存），如果用非阻塞I/O，需要不断重试（耗费CPU）。Selector的出现解决了这尴尬的问题，非阻塞模式下，通过Selector，我们的线程只为已就绪的通道工作，不用盲目的重试了。比如，当所有通道都没有数据到达时，也就没有Read事件发生，我们的线程会在select()方法处被挂起，从而让出了CPU资源。</p>
+<p>使用方法</p>
+<p>如下所示，创建一个Selector，并注册一个Channel。</p>
+<p>注意：要将 Channel 注册到 Selector，首先需要将 Channel 设置为非阻塞模式，否则会抛异常。</p>
+<pre><code>Selector selector = Selector.open();
+channel.configureBlocking( false);
+SelectionKey key = channel. register(selector, SelectionKey.OP_READ);
+</code></pre><p>register()方法的第二个参数名叫“interest set”，也就是你所关心的事件集合。如果你关心多个事件，用一个“按位或运算符”分隔，比如</p>
+<pre><code>SelectionKey.OP_READ | SelectionKey.OP_WRITE
+</code></pre><p>这种写法一点都不陌生，支持位运算的编程语言里都这么玩，用一个整型变量可以标识多种状态，它是怎么做到的呢，其实很简单，举个例子，首先预定义一些常量，它们的值（二进制）如下<br><img src="https://i.imgur.com/LY7TxyT.png" alt=""></p>
+<p>可以发现，它们值为1的位都是错开的，因此对它们进行按位或运算之后得出的值就没有二义性，可以反推出是由哪些变量运算而来。怎么判断呢，没错，就是“按位与”运算。比如，现在有一个状态集合变量值为 0011，我们只需要判断 “0011 &amp; OP_READ” 的值是 1 还是 0 就能确定集合是否包含 OP_READ 状态。</p>
+<p>然后，注意 register() 方法返回了一个SelectionKey的对象，这个对象包含了本次注册的信息，我们也可以通过它修改注册信息。从下面完整的例子中可以看到，select()之后，我们也是通过获取一个 SelectionKey 的集合来获取到那些状态就绪了的通道。</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/10/常用命令总结/" rel="next" title="常用命令总结">
+                <i class="fa fa-chevron-left"></i> 常用命令总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/11/Socket/" rel="prev" title="Java Socket编程">
+                Java Socket编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Xia Dongmu" />
+            
+              <p class="site-author-name" itemprop="name">Xia Dongmu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="http://redmud.xyz/" target="_blank" title="友情链接">
+                    
+                      <i class="fa fa-fw fa-globe"></i>友情链接</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景知识（同步、异步、阻塞、非阻塞）"><span class="nav-number">1.</span> <span class="nav-text">背景知识（同步、异步、阻塞、非阻塞）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传统I-O"><span class="nav-number">2.</span> <span class="nav-text">传统I/O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-NIO核心组件一：Channel概念"><span class="nav-number">3.</span> <span class="nav-text">Java NIO核心组件一：Channel概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-NIO核心组件二：Buffer概念"><span class="nav-number">4.</span> <span class="nav-text">Java NIO核心组件二：Buffer概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-NIO核心组件三：Selector概念"><span class="nav-number">5.</span> <span class="nav-text">Java NIO核心组件三：Selector概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用Selector"><span class="nav-number">5.1.</span> <span class="nav-text">为什么要用Selector</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xia Dongmu</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 99008, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 99008, xid: "2018/09/10/Java NIO/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/99008/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
