@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italic|Comic Sans MS:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Redis的定义与特性Redis的数据库 Redis的数据类型Redis的常见面试题Redis有哪些数据结构答：String、Hash、List、Set、SortedSet 如果是Redis中高级用户，还需要加上HyperLogLog、Geo、Pub/Sub 还有Redis Module，像BloomFilter、RedisSearch、Redistribution-ML Redis分布式锁是怎么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="http://yoursite.com/2018/10/16/Redis/index.html">
+<meta property="og:site_name" content="CherrySunshine">
+<meta property="og:description" content="Redis的定义与特性Redis的数据库 Redis的数据类型Redis的常见面试题Redis有哪些数据结构答：String、Hash、List、Set、SortedSet 如果是Redis中高级用户，还需要加上HyperLogLog、Geo、Pub/Sub 还有Redis Module，像BloomFilter、RedisSearch、Redistribution-ML Redis分布式锁是怎么">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/VssrNWF.png">
+<meta property="og:image" content="https://i.imgur.com/qb1aIFH.jpg">
+<meta property="og:image" content="https://i.imgur.com/TS4biQm.jpg">
+<meta property="og:image" content="https://i.imgur.com/Qzzd4kK.png">
+<meta property="og:image" content="https://i.imgur.com/jAR1Vw5.png">
+<meta property="og:image" content="https://i.imgur.com/Farf8eu.png">
+<meta property="og:image" content="https://i.imgur.com/idPRn31.png">
+<meta property="og:image" content="https://i.imgur.com/qUxpLzd.png">
+<meta property="og:image" content="https://i.imgur.com/yT0xHjc.png">
+<meta property="og:updated_time" content="2018-10-23T13:01:41.702Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis">
+<meta name="twitter:description" content="Redis的定义与特性Redis的数据库 Redis的数据类型Redis的常见面试题Redis有哪些数据结构答：String、Hash、List、Set、SortedSet 如果是Redis中高级用户，还需要加上HyperLogLog、Geo、Pub/Sub 还有Redis Module，像BloomFilter、RedisSearch、Redistribution-ML Redis分布式锁是怎么">
+<meta name="twitter:image" content="https://i.imgur.com/VssrNWF.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/16/Redis/"/>
+
+
+
+
+
+  <title>Redis | CherrySunshine</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CherrySunshine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+<li> <a title="来来来，大家一起嗨一下" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/16/Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Dongmu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CherrySunshine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T17:26:54+08:00">
+                2018-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/16/Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/10/16/Redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Redis的定义与特性"><a href="#Redis的定义与特性" class="headerlink" title="Redis的定义与特性"></a>Redis的定义与特性</h1><h1 id="Redis的数据库"><a href="#Redis的数据库" class="headerlink" title="Redis的数据库"></a>Redis的数据库</h1><p><img src="https://i.imgur.com/VssrNWF.png" alt=""></p>
+<h1 id="Redis的数据类型"><a href="#Redis的数据类型" class="headerlink" title="Redis的数据类型"></a>Redis的数据类型</h1><h1 id="Redis的常见面试题"><a href="#Redis的常见面试题" class="headerlink" title="Redis的常见面试题"></a>Redis的常见面试题</h1><h2 id="Redis有哪些数据结构"><a href="#Redis有哪些数据结构" class="headerlink" title="Redis有哪些数据结构"></a>Redis有哪些数据结构</h2><p>答：String、Hash、List、Set、SortedSet</p>
+<p>如果是Redis中高级用户，还需要加上HyperLogLog、Geo、Pub/Sub</p>
+<p>还有Redis Module，像BloomFilter、RedisSearch、Redistribution-ML</p>
+<h2 id="Redis分布式锁是怎么回事"><a href="#Redis分布式锁是怎么回事" class="headerlink" title="Redis分布式锁是怎么回事"></a>Redis分布式锁是怎么回事</h2><h2 id="假如Redis里有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如何将他们全部找出来？"><a href="#假如Redis里有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如何将他们全部找出来？" class="headerlink" title="假如Redis里有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如何将他们全部找出来？"></a>假如Redis里有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如何将他们全部找出来？</h2><h2 id="使用过Redis做异步队列吗，你是怎么用的？"><a href="#使用过Redis做异步队列吗，你是怎么用的？" class="headerlink" title="使用过Redis做异步队列吗，你是怎么用的？"></a>使用过Redis做异步队列吗，你是怎么用的？</h2><h2 id="如何有大量的key需要设置同一时间过期，一般需要注意什么？"><a href="#如何有大量的key需要设置同一时间过期，一般需要注意什么？" class="headerlink" title="如何有大量的key需要设置同一时间过期，一般需要注意什么？"></a>如何有大量的key需要设置同一时间过期，一般需要注意什么？</h2><h2 id="Redis如何做持久化？"><a href="#Redis如何做持久化？" class="headerlink" title="Redis如何做持久化？"></a>Redis如何做持久化？</h2><h2 id="Pipeline有什么好处，为什么要用pipeline"><a href="#Pipeline有什么好处，为什么要用pipeline" class="headerlink" title="Pipeline有什么好处，为什么要用pipeline"></a>Pipeline有什么好处，为什么要用pipeline</h2><h2 id="Redis的同步机制了解么？"><a href="#Redis的同步机制了解么？" class="headerlink" title="Redis的同步机制了解么？"></a>Redis的同步机制了解么？</h2><h2 id="是否使用过Redis的集群，集群的原理是什么？"><a href="#是否使用过Redis的集群，集群的原理是什么？" class="headerlink" title="是否使用过Redis的集群，集群的原理是什么？"></a>是否使用过Redis的集群，集群的原理是什么？</h2><h2 id="为什么使用redis？"><a href="#为什么使用redis？" class="headerlink" title="为什么使用redis？"></a>为什么使用redis？</h2><p>答：在项目中使用redis，主要考虑两个角度：性能和并发。如果只是为了分布式锁这些其他功能，还有其他中间件Zookeeper等代替，并非一定要使用redis。</p>
+<p>性能：如下图所示，我们在碰到需要执行耗时特别久且结果不需要频繁变动的sql时，就特别适合将运行结果放入缓存。这样后面的请求就去缓存中读取，使得请求能够迅速响应。特别是在秒杀系统中，在同一时间，几乎所有人都在下单，执行的是同一操作–向数据库中查数据。<br>根据交互效果的不同，响应时间没有固定标准。在理想状态下，我们的页面跳转需要在瞬间解决，对于页内操作则需要在刹那间解决。<br><img src="https://i.imgur.com/qb1aIFH.jpg" alt=""><br>并发：如下图所示，在大并发的情况下，所有的请求直接访问数据库，数据库会出现连接异常。这个时候，就需要使用 Redis 做一个缓冲操作，让请求先访问到Redis，而不是直接访问数据库。<br><img src="https://i.imgur.com/TS4biQm.jpg" alt=""></p>
+<p>使用redis的常见问题：</p>
+<ul>
+<li>缓存和数据库的双写一致性问题</li>
+<li>缓存雪崩问题</li>
+<li>缓存击穿问题</li>
+<li>缓存的并发竞争问题</li>
+</ul>
+<h2 id="单线程的redis为什么这么快？"><a href="#单线程的redis为什么这么快？" class="headerlink" title="单线程的redis为什么这么快？"></a>单线程的redis为什么这么快？</h2><p>原因主要有三点：</p>
+<ul>
+<li>纯内存操作</li>
+<li>单线程操作，避免了频繁的上下文切换</li>
+<li>采用了非阻塞的I/O多路复用（I/O多路转接select、epoll等）机制 </li>
+</ul>
+<h2 id="下面重点解释一下redis多路复用的底层实现"><a href="#下面重点解释一下redis多路复用的底层实现" class="headerlink" title="下面重点解释一下redis多路复用的底层实现"></a>下面重点解释一下redis多路复用的底层实现</h2><p>首先回答一个问题：什么是阻塞非阻塞，什么是同步异步（关于I/O）<br><img src="https://i.imgur.com/Qzzd4kK.png" alt=""></p>
+<h3 id="为什么-Redis-中要使用-I-O-多路复用这种技术呢？"><a href="#为什么-Redis-中要使用-I-O-多路复用这种技术呢？" class="headerlink" title="为什么 Redis 中要使用 I/O 多路复用这种技术呢？"></a>为什么 Redis 中要使用 I/O 多路复用这种技术呢？</h3><p>首先，Redis 是跑在单线程中的，所有的操作都是按照顺序线性执行的，但是由于读写操作等待用户输入或输出都是阻塞的，所以 I/O 操作在一般情况下往往不能直接返回，这会导致某一文件的 I/O 阻塞导致整个进程无法对其它客户提供服务，而 I/O 多路复用就是为了解决这个问题而出现的。</p>
+<p>先来看一下传统的阻塞 I/O 模型到底是如何工作的：当使用 read 或者 write 对某一个文件描述符（File Descriptor 以下简称 FD)进行读写时，如果当前 FD 不可读或不可写，整个 Redis 服务就不会对其它的操作作出响应，导致整个服务不可用。</p>
+<p>在 I/O 多路复用模型中，最重要的函数调用就是 select，该方法的能够同时监控多个文件描述符的可读可写情况，当其中的某些文件描述符可读或者可写时，select 方法就会返回可读以及可写的文件描述符个数。</p>
+<p>与此同时也有其它的 I/O 多路复用函数 epoll/kqueue/evport，它们相比 select 性能更优秀，同时也能支撑更多的服务。</p>
+<h3 id="Reactor设计模式"><a href="#Reactor设计模式" class="headerlink" title="Reactor设计模式"></a>Reactor设计模式</h3><p>Redis使用Reactor设计模式来实现文件事件处理器（每个网络连接其实都对应一个文件描述符）<br>。Redis服务器是一个事件驱动程序。服务器需要处理一下两类事件：</p>
+<ul>
+<li><p>文件事件：Redis服务器通过套接字与客户端（或者其他Redis服务器）进行连接，而文件事件就是服务器对套接字操作的抽象。服务器与与客户端（或者其他服务器）的通信会产生相应的文件事件，而服务器则通过监听并处理这些事件来完成一系列网络通信操作。</p>
+</li>
+<li><p>时间事件。Redis服务器中的一些操作（比如serverCron函数）需要在给定的时间点执行，而时间事件就是服务器对这类定时操作的抽象。</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/jAR1Vw5.png" alt=""></p>
+<p>文件事件处理器使用 I/O 多路复用模块同时监听多个 FD，当 accept、read、write 和 close 文件事件产生时，文件事件处理器就会回调 FD 绑定的事件处理器。</p>
+<p>虽然整个文件事件处理器是在单线程上运行的，但是通过 I/O 多路复用模块的引入，实现了同时对多个 FD 读写的监控，提高了网络通信模型的性能，同时也可以保证整个 Redis 服务实现的简单。</p>
+<h3 id="I-O-多路复用模块"><a href="#I-O-多路复用模块" class="headerlink" title="I/O 多路复用模块"></a>I/O 多路复用模块</h3><p>I/O 多路复用模块封装了底层的 select、epoll、avport 以及 kqueue 这些 I/O 多路复用函数，为上层提供了相同的接口。</p>
+<p><img src="https://i.imgur.com/Farf8eu.png" alt=""></p>
+<p>因为 Redis 需要在多个平台上运行，同时为了最大化执行的效率与性能，所以会根据编译平台的不同选择不同的 I/O 多路复用函数作为子模块，提供给上层统一的接口；在 Redis 中，我们通过宏定义的使用，合理的选择不同的子模块：</p>
+<pre><code>#ifdef HAVE_EVPORT
+#include &quot;ae_evport.c&quot;
+#else
+    #ifdef HAVE_EPOLL
+    #include &quot;ae_epoll.c&quot;
+    #else
+        #ifdef HAVE_KQUEUE
+        #include &quot;ae_kqueue.c&quot;
+        #else
+        #include &quot;ae_select.c&quot;
+        #endif
+    #endif
+#endif
+</code></pre><p>因为 select 函数是作为 POSIX 标准中的系统调用，在不同版本的操作系统上都会实现，所以将其作为保底方案：<br><img src="https://i.imgur.com/idPRn31.png" alt=""></p>
+<p>Redis 会优先选择时间复杂度为 O(1) 的 I/O 多路复用函数作为底层实现，包括 Solaries 10 中的 evport、Linux 中的 epoll 和 macOS/FreeBSD 中的 kqueue，上述的这些函数都使用了内核内部的结构，并且能够服务几十万的文件描述符。</p>
+<p>但是如果当前编译环境没有上述函数，就会选择 select 作为备选方案，由于其在使用时会扫描全部监听的描述符，所以其时间复杂度较差 O(n)，并且只能同时服务 1024 个文件描述符，所以一般并不会以 select 作为第一方案使用。</p>
+<h3 id="文件事件的处理器详解"><a href="#文件事件的处理器详解" class="headerlink" title="文件事件的处理器详解"></a>文件事件的处理器详解</h3><blockquote>
+<p>详解可见Redis设计与实现第十二章“事件”。我们在这里只探讨一次完整的客户端与服务器连接事件示例。</p>
+</blockquote>
+<ol>
+<li>假设一个Redis服务器正在运作，那么这个服务器的监听套接字的AE_READABLE事件应该正处于监听状态之下，而该事件对应的处理器为连接应答处理器。</li>
+<li>如果这时有一个Redis客户端向服务器发起连接，那么监听套接字将产生AE_READABLE事件，触发连接应答处理器执行。处理器会对客户端的连接请求进行应答，然后创建客户端套接字，以及客户端状态，并将客户端套接字的AE_READABLE事件与命令请求处理器进行关联，使得客户端可以向主服务器发送命令请求。</li>
+<li>假设客户端向主服务器发送一个命令请求，那么客户端套接字将产生AE_READABLE事件，引发命令请求处理器执行，处理器读取客户端的命令内容，然后传给相应程序去执行。</li>
+<li>执行命令将产生相应的命令回复，为了将这些命令回复传送回客户端，服务器会将客户端套接字的AE_WRITABLE事件与命令回复处理器进行关联。当客户端尝试读取命令回复的时候，客户端套接字将产生AE_WRITABLE事件，触发命令回复处理器执行，当命令回复处理器将命令回复全部写入到套接字之后，服务器就会解除客户端套接字的AE_WRITABLE事件与命令回复处理器之间的关联。</li>
+</ol>
+<p><img src="https://i.imgur.com/qUxpLzd.png" alt=""></p>
+<h2 id="Redis的数据类型及使用场景"><a href="#Redis的数据类型及使用场景" class="headerlink" title="Redis的数据类型及使用场景"></a>Redis的数据类型及使用场景</h2><h2 id="Redis-的过期策略和内存淘汰机制"><a href="#Redis-的过期策略和内存淘汰机制" class="headerlink" title="Redis 的过期策略和内存淘汰机制"></a>Redis 的过期策略和内存淘汰机制</h2><p>Redis 是否用到家，从这就能看出来。比如你 Redis 只能存 5G 数据，可是你写了 10G，那会删 5G 的数据。怎么删的，这个问题思考过么？</p>
+<p>正解：Redis 采用的是定期删除+惰性删除策略。</p>
+<h3 id="为什么不用定时删除策略？"><a href="#为什么不用定时删除策略？" class="headerlink" title="为什么不用定时删除策略？"></a>为什么不用定时删除策略？</h3><p>定时删除，用一个定时器来负责监视 Key，过期则自动删除。虽然内存及时释放，但是十分消耗 CPU 资源。在大并发请求下，CPU 要将时间应用在处理请求，而不是删除 Key，因此没有采用这一策略。</p>
+<h3 id="定期删除-惰性删除如何工作？"><a href="#定期删除-惰性删除如何工作？" class="headerlink" title="定期删除+惰性删除如何工作？"></a>定期删除+惰性删除如何工作？</h3><p>定期删除，Redis 默认每个 100ms 检查，有过期 Key 则删除。需要说明的是，Redis 不是每个 100ms 将所有的 Key 检查一次，而是随机抽取进行检查。如果只采用定期删除策略，会导致很多 Key 到时间没有删除。于是，惰性删除派上用场。</p>
+<h3 id="采用定期删除-惰性删除就没其他问题了么？"><a href="#采用定期删除-惰性删除就没其他问题了么？" class="headerlink" title="采用定期删除+惰性删除就没其他问题了么？"></a>采用定期删除+惰性删除就没其他问题了么？</h3><p>不是的，如果定期删除没删除掉 Key。并且你也没及时去请求 Key，也就是说惰性删除也没生效。这样，Redis 的内存会越来越高。那么就应该采用内存淘汰机制。<br>在 redis.conf 中有一行配置：</p>
+<pre><code># maxmemory-policy volatile-lru
+</code></pre><p>该配置就是配内存淘汰策略的：</p>
+<pre><code>allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的 Key。
+</code></pre><h1 id="知乎Redis"><a href="#知乎Redis" class="headerlink" title="知乎Redis"></a>知乎Redis</h1><h1 id="微博Redis"><a href="#微博Redis" class="headerlink" title="微博Redis"></a>微博Redis</h1><h1 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h1><blockquote>
+<p>多线程并发的情况下如何保证一个代码只能由一个线程访问?</p>
+</blockquote>
+<p>答：使用Synchronized、ReentrantLock类等</p>
+<blockquote>
+<p>分布式集群中，如何保证不同节点的线程同步执行呢？</p>
+</blockquote>
+<p>答：使用分布式锁。如Memcached的add命令。此命令是原子操作，只有在key不存在的情况下，才能add成功，也就意味着线程得到了锁。Redis分布式锁利用setnx命令。只有在key不存在的情况下才能set成功。Zookeeper分布式锁利用Zookeeper的顺序临时节点，来实现分布式锁和等待序列。Zookeeper设计的初衷就是为了实现分布式锁服务的。</p>
+<h2 id="Redis分布式锁"><a href="#Redis分布式锁" class="headerlink" title="Redis分布式锁"></a>Redis分布式锁</h2><h3 id="分布式锁的核心三要素"><a href="#分布式锁的核心三要素" class="headerlink" title="分布式锁的核心三要素"></a>分布式锁的核心三要素</h3><p>1、 加锁</p>
+<p>加锁最简单的是采用setnx命令获取锁，例如：setnx（key，1），当一个线程执行返回1，说明key原本不存在，线程成功得到了锁；当一个线程执行setnx返回0，说明key已经存在，该线程抢锁失败。</p>
+<p>2、 解锁</p>
+<p>有加锁就有解锁。当得到锁的线程执行完任务，需要释放锁，以便其余的线程可以进入，例如del（key），释放锁之后，其余的线程就可以继续使用setnx命令来获得锁。</p>
+<p>3、 锁超时</p>
+<p>锁超时：如果得到锁的线程在执行过程中挂掉了，来不及显示的释放锁，那么这块资源将永远被锁住，别的线程再也拿不到这个锁了。所以setnx的key必须要设置一个超时时间，过了这个时间锁会自动释放掉。如expire（key，30）</p>
+<h3 id="分布式锁的三个致命问题"><a href="#分布式锁的三个致命问题" class="headerlink" title="分布式锁的三个致命问题"></a>分布式锁的三个致命问题</h3><p>1、setnx和expire的非原子性</p>
+<p>解决方法：Redis2.6.12版本以上，set命令有了可选操作，set（key，1，30，NX），这样就取代了setnx指令。</p>
+<p>另：redis官方文档上写明，由于set命令具有setnx、setex等的所有功能，所以以后这几个命令可能会被取消掉。</p>
+<p>2、del导致误删</p>
+<p>场景为：</p>
+<ol>
+<li>假如某线程成功得到了锁，并且设置的超时时间是30秒。</li>
+<li>如果某些原因导致线程A执行的很慢很慢，过了30秒都没执行完，这时候锁过期自动释放，线程B得到了锁。</li>
+<li>随后，线程A执行完了任务，线程A接着执行del指令来释放锁。但这时候线程B还没执行完，线程A实际上删除的是线程B加的锁。</li>
+</ol>
+<p>解决方法是：</p>
+<p>可以在del释放锁之前做一个判断，验证当前的锁是不是自己加的锁。</p>
+<p>至于具体的实现，可以在加锁的时候把当前的线程ID当做value，并在删除之前验证key对应的value是不是自己线程的ID。那如果多个进程下线程id会有可能重复呢？可以采用机器id+线程id，但是要是机器id也有可能重复呢？所以最好的解决方法是使用订单id，唯一！！！</p>
+<p><img src="https://i.imgur.com/yT0xHjc.png" alt=""></p>
+<p>3、出现并发的可能性，还是上个场景虽然我们避免了线程A误删掉key的情况，但是同一时间有A，B两个线程在访问代码块，仍然是不完美的。怎么办呢？我们可以让获得锁的线程开启一个守护线程，用来给快要过期的锁“续航”。</p>
+<p>当过去了29秒，线程A还没执行完，这时候守护线程会执行expire指令，为这把锁“续命”20秒。守护线程从第29秒开始执行，每20秒执行一次。当线程A执行完任务，会显式关掉守护线程。</p>
+<p>另一种情况，如果节点1 忽然断电，由于线程A和守护线程在同一个进程，守护线程也会停下。这把锁到了超时的时候，没人给它续命，也就自动释放了。</p>
+<h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h2 id="Zookeeper分布式锁"><a href="#Zookeeper分布式锁" class="headerlink" title="Zookeeper分布式锁"></a>Zookeeper分布式锁</h2>
+      
+    </div>
+    
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/02/JUC--深入分析ThreadLocal/" rel="next" title="JUC--深入分析ThreadLocal">
+                <i class="fa fa-chevron-left"></i> JUC--深入分析ThreadLocal
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/19/博客使用总结/" rel="prev" title="博客使用总结">
+                博客使用总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Xia Dongmu" />
+            
+              <p class="site-author-name" itemprop="name">Xia Dongmu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="http://redmud.xyz/" target="_blank" title="友情链接">
+                    
+                      <i class="fa fa-fw fa-globe"></i>友情链接</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis的定义与特性"><span class="nav-number">1.</span> <span class="nav-text">Redis的定义与特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis的数据库"><span class="nav-number">2.</span> <span class="nav-text">Redis的数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis的数据类型"><span class="nav-number">3.</span> <span class="nav-text">Redis的数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis的常见面试题"><span class="nav-number">4.</span> <span class="nav-text">Redis的常见面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis有哪些数据结构"><span class="nav-number">4.1.</span> <span class="nav-text">Redis有哪些数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis分布式锁是怎么回事"><span class="nav-number">4.2.</span> <span class="nav-text">Redis分布式锁是怎么回事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假如Redis里有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如何将他们全部找出来？"><span class="nav-number">4.3.</span> <span class="nav-text">假如Redis里有1亿个key，其中有10w个key是以某个固定的已知的前缀开头的，如何将他们全部找出来？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用过Redis做异步队列吗，你是怎么用的？"><span class="nav-number">4.4.</span> <span class="nav-text">使用过Redis做异步队列吗，你是怎么用的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何有大量的key需要设置同一时间过期，一般需要注意什么？"><span class="nav-number">4.5.</span> <span class="nav-text">如何有大量的key需要设置同一时间过期，一般需要注意什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis如何做持久化？"><span class="nav-number">4.6.</span> <span class="nav-text">Redis如何做持久化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline有什么好处，为什么要用pipeline"><span class="nav-number">4.7.</span> <span class="nav-text">Pipeline有什么好处，为什么要用pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis的同步机制了解么？"><span class="nav-number">4.8.</span> <span class="nav-text">Redis的同步机制了解么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是否使用过Redis的集群，集群的原理是什么？"><span class="nav-number">4.9.</span> <span class="nav-text">是否使用过Redis的集群，集群的原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用redis？"><span class="nav-number">4.10.</span> <span class="nav-text">为什么使用redis？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单线程的redis为什么这么快？"><span class="nav-number">4.11.</span> <span class="nav-text">单线程的redis为什么这么快？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下面重点解释一下redis多路复用的底层实现"><span class="nav-number">4.12.</span> <span class="nav-text">下面重点解释一下redis多路复用的底层实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-Redis-中要使用-I-O-多路复用这种技术呢？"><span class="nav-number">4.12.1.</span> <span class="nav-text">为什么 Redis 中要使用 I/O 多路复用这种技术呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reactor设计模式"><span class="nav-number">4.12.2.</span> <span class="nav-text">Reactor设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O-多路复用模块"><span class="nav-number">4.12.3.</span> <span class="nav-text">I/O 多路复用模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件事件的处理器详解"><span class="nav-number">4.12.4.</span> <span class="nav-text">文件事件的处理器详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis的数据类型及使用场景"><span class="nav-number">4.13.</span> <span class="nav-text">Redis的数据类型及使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-的过期策略和内存淘汰机制"><span class="nav-number">4.14.</span> <span class="nav-text">Redis 的过期策略和内存淘汰机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么不用定时删除策略？"><span class="nav-number">4.14.1.</span> <span class="nav-text">为什么不用定时删除策略？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定期删除-惰性删除如何工作？"><span class="nav-number">4.14.2.</span> <span class="nav-text">定期删除+惰性删除如何工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采用定期删除-惰性删除就没其他问题了么？"><span class="nav-number">4.14.3.</span> <span class="nav-text">采用定期删除+惰性删除就没其他问题了么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#知乎Redis"><span class="nav-number">5.</span> <span class="nav-text">知乎Redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#微博Redis"><span class="nav-number">6.</span> <span class="nav-text">微博Redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式锁"><span class="nav-number">7.</span> <span class="nav-text">分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis分布式锁"><span class="nav-number">7.1.</span> <span class="nav-text">Redis分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁的核心三要素"><span class="nav-number">7.1.1.</span> <span class="nav-text">分布式锁的核心三要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁的三个致命问题"><span class="nav-number">7.1.2.</span> <span class="nav-text">分布式锁的三个致命问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper"><span class="nav-number">7.2.</span> <span class="nav-text">Zookeeper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper分布式锁"><span class="nav-number">7.3.</span> <span class="nav-text">Zookeeper分布式锁</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xia Dongmu</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 99008, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 99008, xid: "2018/10/16/Redis/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/99008/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
